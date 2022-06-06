@@ -1,0 +1,4 @@
+https://github.com/WebDevSimplified/Your-First-Node-REST-API
+
+How to solve CORS issue in React
+https://www.youtube.com/watch?v=d_-b6Qbj4zU
