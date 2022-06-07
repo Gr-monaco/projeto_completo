@@ -5,7 +5,7 @@ import { images, data } from "../../constants";
 const FindUs = () => (
   <div className="app__bg app__wrapper section__padding" id="contact">
     <div className="app__wrapper_info">
-      <subHeading title="Contact" />
+      <SubHeading title="Contact" />
       <h1 className="headtext__cormorant" style={{ marginBottom: "3rem" }}>
         Encontre-nos{" "}
       </h1>

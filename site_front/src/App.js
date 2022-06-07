@@ -2,17 +2,50 @@ import React from "react";
 import ComCriaOpcoes from "./components/ComCriaOpcoes";
 import ComEditaOpcoes from "./components/ComEditaOpcoes";
 import ComPegaMenu from "./components/ComPegaMenu";
-import { ComLogin } from "./pages/Login/ComLogin";
-import { BrowserRouter } from 'react-router-dom';
+//import { ComLogin } from "./pages/Login/ComLogin";
+import { ComLogin } from "./components/pages/Login/ComLogin.js";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Main from "./pages/Home/index";
-import Routes from "./Routes"
+import { MenuPrincipal } from "./components/MenuPrincipal";
+import { PainelDeAdmin } from "./components/pages/PainelDeAdmin";
 
 
+function App(){
+    function requireAuth(nextState, replace, next) {
+        console.log("Require auth");
+        if (!verificaUsuario) {
+          replace({
+            pathname: "/login",
+            state: {nextPathname: nextState.location.pathname}
+          });
+        }
+        next();
+      }
 
-const App = () => (
-    <ComLogin />
+      function verificaUsuario(){
+        console.log("Verifica user");
+        if(sessionStorage.getItem("currentUser") !== null){
+          console.log("Dentro do true");
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+
+    return(
+    <BrowserRouter>
+        <Routes>
+            <Route>
+                <Route index element={<MenuPrincipal></MenuPrincipal>}></Route>
+                <Route path="/login" element={<ComLogin></ComLogin>}></Route>
+                <Route path="/painelAdmin" element={<PainelDeAdmin></PainelDeAdmin>}></Route>
+                <Route path="/pedir" element={ (verificaUsuario() ? (<ComPegaMenu></ComPegaMenu>):(<Navigate to="/login"></Navigate>))}></Route> 
+            </Route>            
+        </Routes>
+    </BrowserRouter>)
+}
 
 
-);
 
 export default App;
