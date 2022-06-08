@@ -4,11 +4,13 @@ import ComEditaOpcoes from "./components/ComEditaOpcoes";
 import ComPegaMenu from "./components/ComPegaMenu";
 //import { ComLogin } from "./pages/Login/ComLogin";
 import { ComLogin } from "./components/pages/Login/ComLogin.js";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter ,useNavigate , Routes, Route, Navigate } from 'react-router-dom';
 import Main from "./pages/Home/index";
 import { MenuPrincipal } from "./components/MenuPrincipal";
 import { PainelDeAdmin } from "./components/pages/PainelDeAdmin";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Layout from "./components/pages/layout";
 
 function App(){
     function requireAuth(nextState, replace, next) {
@@ -34,16 +36,20 @@ function App(){
       }
 
     return(
-    <BrowserRouter>
+      <>
+      <ToastContainer />
+      <BrowserRouter>
         <Routes>
-            <Route>
+            <Route path="/" element={<Layout></Layout>}>
                 <Route index element={<MenuPrincipal></MenuPrincipal>}></Route>
                 <Route path="/login" element={<ComLogin></ComLogin>}></Route>
                 <Route path="/painelAdmin" element={<PainelDeAdmin></PainelDeAdmin>}></Route>
                 <Route path="/pedir" element={ (verificaUsuario() ? (<ComPegaMenu></ComPegaMenu>):(<Navigate to="/login"></Navigate>))}></Route> 
             </Route>            
         </Routes>
-    </BrowserRouter>)
+      </BrowserRouter>
+      </>
+    )
 }
 
 

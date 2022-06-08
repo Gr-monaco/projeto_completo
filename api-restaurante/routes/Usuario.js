@@ -30,7 +30,7 @@ async function getUsuarioByEmail(req, res, next){
     let usuario;
     try {
         usuario = await Usuario.find({email:req.body.email});
-        if (usuario == null){
+        if (usuario.length == 0){
             return res.status(404).json({message: `Cannot find entry of ${Usuario.modelName}`})
         }
     } catch (err){
