@@ -1,12 +1,12 @@
 import * as React from "react"
 import axios from 'axios'
-import { ErrorMessage, Formik, Form, Field } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import "./Login.css";
 import { FiFacebook, FiTwitter, FiInstagram, } from "react-icons/fi";
 import { BsEnvelope, BsKey } from "react-icons/bs";
 import { toast } from 'react-toastify';
 import "./Login.css";
-import { BrowserRouter ,useNavigate , Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 
 export function ComLogin() {
@@ -26,7 +26,7 @@ export function ComLogin() {
                         console.log(response.data);
                         response.data.isAdmin = resp.data.isAdmin;  //Rapaz que código espaguete é esse, virou o que, o Mario?
                         sessionStorage.setItem("currentUser", JSON.stringify(response.data));
-                       
+                        toast.success(`Bem-vindo ${response.data.username}!`);
                         navigate("/");
                     })
 
@@ -57,9 +57,9 @@ export function ComLogin() {
                         <h2 className="title">Login</h2>
                         <div className="social-media">
                             <ul className="list-social-media">
-                                <li className="item-social-media"><a href="#"><FiFacebook /> </a></li>
-                                <li className="item-social-media"><a href="#"><FiTwitter /></a></li>
-                                <li className="item-social-media"><a href="#"> <FiInstagram /></a></li>
+                                <li className="item-social-media"><div><FiFacebook /> </div></li>
+                                <li className="item-social-media"><div><FiTwitter /></div></li>
+                                <li className="item-social-media"><div> <FiInstagram /></div></li>
                             </ul>
                         </div>
 
@@ -78,7 +78,7 @@ export function ComLogin() {
 
                                 </label>
 
-                                <a ClassName="password" href="#">Esqueceu sua senha?</a>
+                                <label className="password" >Esqueceu sua senha?</label>
                                 <button type="submit" className="btn btn-second">Sign up</button>
 
                             </Form>
