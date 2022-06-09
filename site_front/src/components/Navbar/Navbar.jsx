@@ -9,11 +9,13 @@ const Navbar = () => {
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
-        <img src={images.japanlogo} alt="app logo" />
+        <a href="/">
+          <img src={images.japanlogo} alt="app logo" />
+        </a>
       </div>
       <ul className="app__navbar-links">
         <li className="p__opensans">
-          <a href="#home">Home</a>
+          <a href="/">Home</a>
         </li>
         <li className="p__opensans">
           <a href="#sobre">Sobre Nós</a>
@@ -30,7 +32,7 @@ const Navbar = () => {
           Login / Registrar
         </a>
         <div />
-        <a href="/" className="p__opensans">
+        <a href="/pedir" className="p__opensans">
           Reservar mesa
         </a>
       </div>

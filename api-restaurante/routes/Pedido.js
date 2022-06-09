@@ -31,6 +31,7 @@ router.post('/', async (req,res)=> {
             valorTotal: valorTotalPedido
         });
         const novoPedido = await pedido.save();
+        res.status(200).json({message:"Pedido feito com sucesso!",pedido:novoPedido})
     } catch(err){
         res.status(400).json({message: err.message});
     }

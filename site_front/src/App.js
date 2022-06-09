@@ -11,6 +11,7 @@ import { PainelDeAdmin } from "./components/pages/PainelDeAdmin";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from "./components/pages/layout";
+import {ComPedidoFeito} from "./components/ComPedidoFeito"
 
 function App(){
     function requireAuth(nextState, replace, next) {
@@ -45,6 +46,7 @@ function App(){
                 <Route path="/login" element={<ComLogin></ComLogin>}></Route>
                 <Route path="/painelAdmin" element={<PainelDeAdmin></PainelDeAdmin>}></Route>
                 <Route path="/pedir" element={ (verificaUsuario() ? (<ComPegaMenu></ComPegaMenu>):(<Navigate to="/login"></Navigate>))}></Route> 
+                <Route path="/pedir/efetuado" element={<ComPedidoFeito></ComPedidoFeito>}></Route>
             </Route>            
         </Routes>
       </BrowserRouter>

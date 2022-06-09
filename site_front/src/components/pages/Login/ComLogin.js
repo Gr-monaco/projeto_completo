@@ -1,13 +1,17 @@
 import * as React from "react"
 import axios from 'axios'
 import { ErrorMessage, Formik, Form, Field } from 'formik'
+import "./Login.css";
+import { FiFacebook, FiTwitter, FiInstagram, } from "react-icons/fi";
+import { BsEnvelope, BsKey } from "react-icons/bs";
+import { toast } from 'react-toastify';
+import "./Login.css";
 import { BrowserRouter ,useNavigate , Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
-import { toast } from 'react-toastify';import "./Login.css";
 
 export function ComLogin() {
     let navigate = useNavigate();
-    const location = useLocation();
+    
 
     const handleLogin = (values) => {
         console.log('LOGIN', values);
@@ -22,13 +26,8 @@ export function ComLogin() {
                         console.log(response.data);
                         response.data.isAdmin = resp.data.isAdmin;  //Rapaz que código espaguete é esse, virou o que, o Mario?
                         sessionStorage.setItem("currentUser", JSON.stringify(response.data));
-                        console.log(navigate)
-                        if(location.key){
-                            //navigate(-1);
-                        }
-                        else{
-                            navigate("/");
-                        }
+                       
+                        navigate("/");
                     })
 
             }).catch( e => {
@@ -38,35 +37,62 @@ export function ComLogin() {
     }
 
     return (
-        <div className="app__login section__padding" >
-            <h1 className="app__login-h1">Login</h1>
-            <Formik onSubmit={ handleLogin } initialValues={ {email:"", password:"" } }>
-                <Form>
-                    <div className="app__login-campo">
-                        <div className="app__login-form ">
-                            <label htmlFor="email">Email: </label>
-                            <Field
-                                id="email"
-                                name="email"
-                                type="text"
-                                required>
-                            </Field>
-                        </div>
-                        <div className="app__login-form ">
-                            <label htmlFor="password">Senha: </label>
-                            <Field
-                                id="password"
-                                name="password"
-                                type="text"
-                                required>
 
-                            </Field>
-                        </div>
-                        <button className='app__button custom__button' type="submit">Login</button>
+        <div>
+
+            <div className="container ">
+                
+                    
+                
+                <div className="content first-content">
+                    <div className="first-column">
+                        <h2 className="title title-primary">Bem vindo!</h2>
+                        <p className="description description-primary">Para desfrutar de uma</p>
+                        <p className="description description-primary">experiência customizada </p>
+                        <p className="description description-primary">faça login na sua conta.</p>
+
                     </div>
 
-                </Form>
-            </Formik>
+                    <div className="second-column">
+                        <h2 className="title">Login</h2>
+                        <div className="social-media">
+                            <ul className="list-social-media">
+                                <li className="item-social-media"><a href="#"><FiFacebook /> </a></li>
+                                <li className="item-social-media"><a href="#"><FiTwitter /></a></li>
+                                <li className="item-social-media"><a href="#"> <FiInstagram /></a></li>
+                            </ul>
+                        </div>
+
+                        <p className="description description-second">ou use seu email: </p>
+
+                        <Formik onSubmit={ handleLogin } initialValues={ {} }>
+                            <Form className="form">
+
+                                <label className="label-input">
+                                    <div className="icon-modify"><BsEnvelope /></div>
+                                    <Field name="email" type="email" placeholder="Email" id="email" required></Field>
+                                </label>
+                                <label className="label-input">
+                                    <div className="icon-modify"><BsKey /></div>
+                                    <Field name="password" type="text" placeholder="Senha" id="password" required></Field>
+
+                                </label>
+
+                                <a ClassName="password" href="#">Esqueceu sua senha?</a>
+                                <button type="submit" className="btn btn-second">Sign up</button>
+
+                            </Form>
+                        </Formik>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
         </div>
     )
 }
