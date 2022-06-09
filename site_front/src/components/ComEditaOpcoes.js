@@ -65,7 +65,7 @@ export function ComEditaOpcoes(){
 
     return (
         <div>
-            <div className="content">
+            <div>
             <h1>Editor de preco</h1>
             <div className="menuDeOp">
                 <select onChange={(e)=> {console.log(`e: ${e.target.value}`) ; funcChangeOp(e.target.value)}}>
