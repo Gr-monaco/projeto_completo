@@ -1,7 +1,6 @@
 import React from 'react'
 import ComCriaOpcoes from '../ComCriaOpcoes'
 import ComEditaOpcoes from '../ComEditaOpcoes'
-import { ComLogin } from './Login/ComLogin'
 
 export function PainelDeAdmin(){
     
@@ -17,7 +16,6 @@ export function PainelDeAdmin(){
 
     return(
         <div>
-            <ComLogin></ComLogin>
             {verificaUsuario() ? <ComCriaOpcoes></ComCriaOpcoes> : null}
             {verificaUsuario() ? <ComEditaOpcoes></ComEditaOpcoes> : null}
 
