@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const OpcaoDePrato = require('../models/OpcaoDePrato');
 
-router.get("/:id", getOpcaoDePrato, (req,res)=> {
+router.get("/pegaOpcaodePrato/:id", getOpcaoDePrato, (req,res)=> {
     console.log(`GET request from: ${req.baseUrl} UNIQUE`);
     res.json(res.opcao);
 })
@@ -41,7 +41,8 @@ router.post('/', async (req, res) => {
     console.log(`POST request from: ${req.baseUrl} `);
     const opcao = new OpcaoDePrato({
         nome: req.body.nome,
-        preco: req.body.preco
+        preco: req.body.preco,
+        descricao: req.body.descricao
     });
     try {
         const novaOpcao = await opcao.save();
@@ -58,6 +59,20 @@ router.delete('/:id', getOpcaoDePrato, async (req, res) =>{
         res.json({message: 'Opção deletada'});
     } catch(err){
         res.status(500).json({message:err.message});
+    }
+})
+
+router.get("/pegaCincoPratos", async(req, res) => {
+    let opcoes;
+    try{
+        opcoes = await OpcaoDePrato.find().sort({ _id: 1 }).limit(5)
+        console.log(opcoes)
+        if (opcoes == null || opcoes.length < 5 ){
+            return res.status(404).json({ message: `Erro ao dar fetch : Sem opções suficientes ou servidor saiu` })
+        } 
+        return res.status(200).json(opcoes);
+    }catch(err){
+        return res.status(500).json({ message: err.message })
     }
 })
 
