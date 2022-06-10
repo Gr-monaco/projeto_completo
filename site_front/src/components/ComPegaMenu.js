@@ -18,6 +18,7 @@ export default function ComPegaMenu() {
 
     const [opcoes, setOpcoes] = React.useState([]);
     const [init, setInit] = React.useState({});
+
     const funcaoAssync = async () => {
         console.log("func async")
         const resultado = await fetch("http://localhost:5000/opcaoDePrato");
@@ -56,7 +57,7 @@ export default function ComPegaMenu() {
     }
 
     return (
-        <div className="content">
+        <div>
             <h1>Eu carreguei!</h1>
             <Formik onSubmit={handleSubmit} initialValues={{}} >
                 <Form>

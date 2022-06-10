@@ -4,11 +4,14 @@ import { toast } from "react-toastify";
 export function ComCriaOpcoes(){
     const[nome, setNome] = React.useState();
     const[preco, setPreco] = React.useState();
+    const[tipo, setTipo] = React.useState();
     const[descricao, setDescricao] = React.useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const opcao = {nome, preco, descricao};
+        const opcao = {nome, tipo, preco, descricao};
+        if (opcao.tipo == undefined) opcao.tipo = "sushi"; //se é undefined, é a primeira opção
+        console.log(opcao)
         fetch("http://localhost:5000/opcaoDePrato", {
             method: 'POST',
             headers: {"Content-Type": "application/json",
@@ -39,9 +42,17 @@ export function ComCriaOpcoes(){
                     ></input>
                 </div>
                 <div>
-                    <label for="nome">Preço:</label>
+                    <label for="tipo">Tipo</label>
+                    <select onChange={(e)=> {setTipo(e.target.value)}} id="tipo">
+                        <option value="sushi">Sushi</option>
+                        <option value="porcao">Porção</option>
+                        <option value="bebida">Bebida</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="preco">Preço:</label>
                     <input 
-                    id="nome"
+                    id="preco"
                     type="number"
                     step=".01" 
                     required

@@ -41,6 +41,7 @@ router.post('/', async (req, res) => {
     console.log(`POST request from: ${req.baseUrl} `);
     const opcao = new OpcaoDePrato({
         nome: req.body.nome,
+        tipo: req.body.tipo,
         preco: req.body.preco,
         descricao: req.body.descricao
     });
@@ -62,10 +63,10 @@ router.delete('/:id', getOpcaoDePrato, async (req, res) =>{
     }
 })
 
-router.get("/pegaCincoPratos", async(req, res) => {
+router.get("/pegaCincoPratosSushi", async(req, res) => {
     let opcoes;
     try{
-        opcoes = await OpcaoDePrato.find().sort({ _id: 1 }).limit(5)
+        opcoes = await OpcaoDePrato.find({tipo:"sushi"}).sort({ _id: 1 }).limit(5)
         console.log(opcoes)
         if (opcoes == null || opcoes.length < 5 ){
             return res.status(404).json({ message: `Erro ao dar fetch : Sem opções suficientes ou servidor saiu` })

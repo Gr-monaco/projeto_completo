@@ -11,7 +11,7 @@ export default function SpecialMenu(){
   const [opcoes, setOpcoes] = React.useState([]);
 
   const funcaoAssync = async () => {
-      const resultado = await fetch("http://localhost:5000/opcaoDePrato/pegaCincoPratos");
+      const resultado = await fetch("http://localhost:5000/opcaoDePrato/pegaCincoPratosSushi");
       const json = await resultado.json();
       console.log(json);
       setOpcoes(json);
