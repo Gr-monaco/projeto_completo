@@ -26,6 +26,14 @@ const pedidoSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    endereco: {
+        type:String,
+        required:true
+    },
+    formaPagamento: {
+        type:String,
+        required:true
+    },
     valorTotal: {
         type: Number,
         required:true

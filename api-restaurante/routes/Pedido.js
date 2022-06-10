@@ -10,11 +10,15 @@ router.post('/', async (req,res)=> {
     try{
         //Transforma o objeto de recebimento em dois arrays
         const pratos = Object.keys(req.body);
-        const qnt = Object.values(req.body);
+        const qntbruto = Object.values(req.body);
         //Tira o email dos arrays
-        pratos.pop()
-        qnt.pop()
-
+        pratos.splice(pratos.indexOf('email'), 1);
+        //Tira forma de pagamento
+        pratos.splice(pratos.indexOf('formaPagamento'), 1);
+        //Tira o endereço
+        pratos.splice(pratos.indexOf('endereco'), 1);
+        console.log(pratos)
+        const qnt = qntbruto.filter(x => typeof x === "number");
         const opcoesArray = [];
         let prato;
         let precoTotalDoPrato;
@@ -28,6 +32,8 @@ router.post('/', async (req,res)=> {
         const pedido = new Pedido({
             opcoes: opcoesArray,
             cliente: req.body.email,
+            endereco: req.body.endereco,
+            formaPagamento: req.body.formaPagamento,
             valorTotal: valorTotalPedido
         });
         const novoPedido = await pedido.save();
