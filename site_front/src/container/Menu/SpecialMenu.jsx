@@ -9,8 +9,9 @@ export default function SpecialMenu(){
   }, [])
 
   const [opcoes, setOpcoes] = React.useState([]);
+
   const funcaoAssync = async () => {
-      const resultado = await fetch("http://localhost:5000/opcaoDePrato");
+      const resultado = await fetch("http://localhost:5000/opcaoDePrato/pegaCincoPratos");
       const json = await resultado.json();
       console.log(json);
       setOpcoes(json);
@@ -27,12 +28,12 @@ export default function SpecialMenu(){
         <div className="app__specialMenu-menu_wine flex__center">
           <p className="app__specialMenu-menu_heading">Sushi's</p>
           <div className="app__specialMenu_menu_items">
-            {data.sushis.map((sushi, index) => (
+            {opcoes.map((op, index) => (
               <MenuItem
-                key={sushi.title + index}
-                title={sushi.title}
-                price={sushi.price}
-                tags={sushi.tags}
+                key={op.nome + index}
+                title={op.nome}
+                price={`R$${op.preco.toFixed(2).replace(".",",")}`}
+                tags={op.descricao}
               />
             ))}
           </div>

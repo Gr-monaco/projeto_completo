@@ -57,9 +57,9 @@ export function ComLogin() {
                         <h2 className="title">Login</h2>
                         <div className="social-media">
                             <ul className="list-social-media">
-                                <li className="item-social-media"><div><FiFacebook /> </div></li>
-                                <li className="item-social-media"><div><FiTwitter /></div></li>
-                                <li className="item-social-media"><div> <FiInstagram /></div></li>
+                                <li className="item-social-media"><a href="#"><FiFacebook /> </a></li>
+                                <li className="item-social-media"><a href="#"><FiTwitter /></a></li>
+                                <li className="item-social-media"><a href="#"> <FiInstagram /></a></li>
                             </ul>
                         </div>
 
@@ -78,7 +78,7 @@ export function ComLogin() {
 
                                 </label>
 
-                                <label className="password" >Esqueceu sua senha?</label>
+                                <a className="password" href="#">Esqueceu sua senha?</a>
                                 <button type="submit" className="btn btn-second">Sign up</button>
 
                             </Form>
