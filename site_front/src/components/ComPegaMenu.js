@@ -61,8 +61,41 @@ export default function ComPegaMenu() {
             <h1>Eu carreguei!</h1>
             <Formik onSubmit={handleSubmit} initialValues={{}} >
                 <Form>
+                    <h1>Sushis</h1>
                     {opcoes.map((op, i) => {
-                        return (
+                        if (op.tipo == "sushi") return (
+                            <div className="menuDeOp">
+                                <ul>
+                                    <li className="lista">
+                                        <strong className="forte">{op.nome}</strong>
+                                        <div className="preco">
+                                            <strong>R$:</strong><label className="numero_preco">{op.preco.toFixed(2)}</label>
+                                        </div>
+                                        <Field id={op.id} name={op._id} type="number" ></Field>
+                                    </li>
+                                </ul>
+                            </div>
+                        )
+                    })}
+                    <h1>Porções</h1>
+                    {opcoes.map((op, i) => {
+                        if (op.tipo == "porcao") return (
+                            <div className="menuDeOp">
+                                <ul>
+                                    <li className="lista">
+                                        <strong className="forte">{op.nome}</strong>
+                                        <div className="preco">
+                                            <strong>R$:</strong><label className="numero_preco">{op.preco.toFixed(2)}</label>
+                                        </div>
+                                        <Field id={op.id} name={op._id} type="number" ></Field>
+                                    </li>
+                                </ul>
+                            </div>
+                        )
+                    })}
+                    <h1>Bebidas</h1>
+                    {opcoes.map((op, i) => {
+                        if (op.tipo == "bebida") return (
                             <div className="menuDeOp">
                                 <ul>
                                     <li className="lista">

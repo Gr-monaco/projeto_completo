@@ -19,7 +19,21 @@ router.get('/', async (req, res) => {
 
 
 router.patch('/:id', getOpcaoDePrato, async (req, res)=> {
-    console.log(res.opcao.id);
+    console.log("Body:",req.body);
+    console.log("opcao", res.opcao);
+
+    res.opcao.nome = req.body.nome;
+    res.opcao.preco = req.body.preco;
+    res.opcao.descricao = req.body.descricao;
+
+    try {
+        const opcaoAtualizada = await res.opcao.save();
+        res.status(200).json({message:"Atualizado com sucesso", op:opcaoAtualizada})
+        console.log(`New Entry in Database: ${opcaoAtualizada}`)
+    }catch (err){
+        res.status(400).json({message: err.message})
+    }
+    /* console.log(res.opcao.id);
     if(req.body.nome != null){
         console.log(req.body.nome);
         res.opcao.nome = req.body.nome;
@@ -34,7 +48,7 @@ router.patch('/:id', getOpcaoDePrato, async (req, res)=> {
 
     } catch (err){
         res.status(400).json({message: err.message})
-    }
+    } */
 })
 
 router.post('/', async (req, res) => {
@@ -67,6 +81,20 @@ router.get("/pegaCincoPratosSushi", async(req, res) => {
     let opcoes;
     try{
         opcoes = await OpcaoDePrato.find({tipo:"sushi"}).sort({ _id: 1 }).limit(5)
+        console.log(opcoes)
+        if (opcoes == null || opcoes.length < 5 ){
+            return res.status(404).json({ message: `Erro ao dar fetch : Sem opções suficientes ou servidor saiu` })
+        } 
+        return res.status(200).json(opcoes);
+    }catch(err){
+        return res.status(500).json({ message: err.message })
+    }
+})
+
+router.get("/pegaCincoPorcoes", async(req, res) => {
+    let opcoes;
+    try{
+        opcoes = await OpcaoDePrato.find({tipo:"porcao"}).sort({ _id: 1 }).limit(5)
         console.log(opcoes)
         if (opcoes == null || opcoes.length < 5 ){
             return res.status(404).json({ message: `Erro ao dar fetch : Sem opções suficientes ou servidor saiu` })
