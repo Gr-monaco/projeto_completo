@@ -24,16 +24,12 @@ export function MenuPrincipal(){
         const resultado = await fetch("http://localhost:5000/opcaoDePrato");
         const json = await resultado.json();
         setOpcoes(json);
-        console.log(json);
     };
     return(
     <div>
         <Header />
         <AboutUs />
         <SpecialMenu opPratos={opcoes} />
-        <Chef />
-        <Intro />
-        <Laurels />
         <Gallery />
         <FindUs />
         <Footer />

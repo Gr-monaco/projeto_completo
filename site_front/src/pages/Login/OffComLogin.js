@@ -1,7 +1,7 @@
 import * as React from "react"
 import axios from 'axios'
 import { ErrorMessage, Formik, Form, Field } from 'formik'
-import "./Login.css";
+import "../"
 
 export function ComLogin() {
 

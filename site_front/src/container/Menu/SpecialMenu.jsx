@@ -16,7 +16,6 @@ export default function SpecialMenu(){
       const json = await resultado.json();
       const resultado2 = await fetch("http://localhost:5000/opcaoDePrato/pegaCincoPorcoes")
       const jsonDePorcoes = await resultado2.json();
-      console.log(json,jsonDePorcoes);
 
       setOpcoes(json);
       setPorcao(jsonDePorcoes)

@@ -9,29 +9,27 @@ import "./Login.css";
 import { useNavigate} from 'react-router-dom';
 
 
+
 export function ComLogin() {
     let navigate = useNavigate();
     
 
     const handleLogin = (values) => {
-        console.log('LOGIN', values);
         axios.post("http://localhost:5000/usuario/login", values)
             .then((response) => {
-                console.log("RESPONSE VALUES", response)
-                console.log("RESPONSE VALUES", response.data.email)
 
-                axios.post("http://localhost:5000/admin/", response.data.email)
+                console.log(response);
+                axios.post("http://localhost:5000/admin/", {email:response.data.email})
                     .then((resp) => {
-                        console.log(resp.data);
-                        console.log(response.data);
+
                         response.data.isAdmin = resp.data.isAdmin;  //Rapaz que código espaguete é esse, virou o que, o Mario?
                         sessionStorage.setItem("currentUser", JSON.stringify(response.data));
                         toast.success(`Bem-vindo ${response.data.username}!`);
                         navigate("/");
+                        window.location.reload(false);
                     })
 
             }).catch( e => {
-                console.log(e);
                 toast.error(e.response.data.message);
             })
     }
@@ -74,7 +72,7 @@ export function ComLogin() {
                                 </label>
                                 <label className="label-input">
                                     <div className="icon-modify"><BsKey /></div>
-                                    <Field name="password" type="text" placeholder="Senha" id="password" required></Field>
+                                    <Field name="password" type="password" placeholder="Senha" id="password" required></Field>
 
                                 </label>
 

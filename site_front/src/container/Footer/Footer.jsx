@@ -22,12 +22,12 @@ const Footer = () => (
         <img src={images.japanlogo} alt="footer_logo" />
 
         <p className="p__opensans">
-          "O sabor da vida depende de quem tempera.""{" "}
+          "O sabor da vida depende de quem tempera."{" "}
         </p>
         <img
           src={images.spoon}
           alt="spoon"
-          className="spoon__img"
+          classname="spoon__img"
           style={{ marginTop: 15 }}
         />
         <div className="app__footer-links_icons">
@@ -38,9 +38,9 @@ const Footer = () => (
       </div>
       <div className="app__footer-links_work">
         <h1 className="app__footer-headtext">Horário de funcionamento</h1>
-        <p className="p__opensans">Seg - Sex:</p>
+        <p className="p__opensans">Segunda - sexta</p>
         <p className="p__opensans">17h - 23h</p>
-        <p className="p__opensans">Sab - Dom</p>
+        <p className="p__opensans">Sábado - Domingo</p>
         <p className="p__opensans">19h - 00h</p>
       </div>
     </div>

@@ -1,0 +1,37 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+
+
+.pedido{    
+    width: 1000px;
+    height: 990px;
+    border-radius: 20px;
+    margin-top: 200px;
+
+}
+
+.pedido_fundo_escuro {
+    background-color: black;
+    border-radius: 15px;
+    width: 70%;
+    text-align: center;
+}
+
+.pedido_fundo_escuro p, .pedido_fundo_escuro label{
+    color: white;
+}
+
+.divisor{
+    padding: 1.5rem;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.464);
+    display: flex;
+    margin: auto;
+    width: 40em;
+    justify-content: center;
+}

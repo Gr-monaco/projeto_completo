@@ -46,7 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("C:\Users\gr-mo\Documents\Faculdade\Desenvolvimento Web\React\Aula_react\projeto_web\site_front\src\assets\WhatsApp Image 2022-06-08 at 23.00.28.jpeg");
+    background-image: url(../../../assets/backlogin.jpeg);
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
@@ -140,7 +140,7 @@
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 
-    left: 60%;
+    left: 62%;
 }
 
 .btn{

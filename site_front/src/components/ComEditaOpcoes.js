@@ -2,7 +2,7 @@ import * as React from "react"
 import axios from 'axios'
 import { Formik, Form, Field } from 'formik'
 import { toast } from 'react-toastify';
-
+import "./ComCriaOpcoes.css"
 
  
 export function ComEditaOpcoes(){
@@ -25,20 +25,6 @@ export function ComEditaOpcoes(){
         setOpcoes(json);
     };
 
-    /* const handleSubmit = (e) => {
-        e.preventDefault();
-        const opcao = {nome, preco};
-        fetch("http://localhost:5000/opcaoDePrato/"+id, {
-            method: 'PATCH',
-            headers: {"Content-Type": "application/json",
-                      "Access-Control-Allow-Origin": "*" },
-            body: JSON.stringify(opcao)
-        }).then(()=>{
-            console.log("Opção atualizada.");
-        }).catch((e)=>
-        console.log(e.message));
-    } */
-
 
     const handleEdit = (e) => {
         console.log(e);
@@ -59,30 +45,35 @@ export function ComEditaOpcoes(){
     }
 
     return (
-        <div>
-
-            {opcoes.map((op)=>{
-                let nome = "nome";
-                let preco = "preco";
-                let descricao = "descricao";
-                let initial = {};
-                initial[nome] = op.nome;
-                initial[preco] = op.preco;
-                initial[descricao] = op.descricao;
-                initial["id"] = op._id;
-                return(
-                <Formik onSubmit={handleEdit} initialValues={initial}>
-                    <Form className="form">
-                        <Field type="hidden" value={op._id} name="id"></Field>
-                        <Field type="text" name={nome} ></Field>
-                        <Field type="number" step=".01" name={preco} ></Field>
-                        <Field type="text" name={descricao}></Field>
-                        <button type="submit">Atualizar</button>
-                        <button type="button" id={op._id} onClick={handleDelete}>Deleta</button>
-                    </Form>
-                </Formik>
-                )
-            })}
+        <div className="div_criador">
+            <div className="div_criador">
+                {opcoes.map((op)=>{
+                    let nome = "nome";
+                    let preco = "preco";
+                    let descricao = "descricao";
+                    let initial = {};
+                    initial[nome] = op.nome;
+                    initial[preco] = op.preco;
+                    initial[descricao] = op.descricao;
+                    initial["id"] = op._id;
+                    return(
+                    <div className="div_editor">
+                        <Formik  onSubmit={handleEdit} initialValues={initial}>
+                            <Form className="form">
+                                <Field type="hidden" value={op._id} name="id"></Field>
+                                <Field className="inputs_criador" type="text" name={nome} ></Field>
+                                <Field className="inputs_criador" type="number" step=".01" name={preco} ></Field>
+                                <Field className="inputs_criador" type="text" name={descricao}></Field>
+                                <button className="botao_criador" type="submit">Atualizar</button>
+                                <button className="botao_deletor" type="button" id={op._id} onClick={handleDelete}>Deleta</button>
+                            </Form>
+                        </Formik>
+                    </div>
+                    
+                    )
+                })}
+            </div>
+        
         </div>
     );
 }

@@ -1,40 +1,59 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { Link } from "react-router-dom";
 import images from "../../constants/images";
 import "./Navbar.css";
 
-const Navbar = () => {
+function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
+
+  const verificaUsuario = () =>{
+    if(sessionStorage.getItem("currentUser") !== null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  const verificaUsuarioAdmin = () =>{
+    if (!verificaUsuario()) return false;
+    if(JSON.parse(sessionStorage.getItem("currentUser")).isAdmin) return true;
+    return false;
+  }
+
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
-        <a href="/">
-          <img src={images.japanlogo} alt="app logo" />
-        </a>
+        <Link to="/">
+        <img src={images.japanlogo} alt="app logo" to="/" />
+        </Link>
       </div>
       <ul className="app__navbar-links">
         <li className="p__opensans">
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li className="p__opensans">
-          <a href="#sobre">Sobre Nós</a>
+          <a href="#about">Sobre Nós</a>
         </li>
         <li className="p__opensans">
           <a href="#menu">Menu</a>
         </li>
         <li className="p__opensans">
-          <a href="#contatos">Contato</a>
+          <a href="#contact">Contato</a>
         </li>
+        {verificaUsuarioAdmin() ? <li><Link to="/painelAdmin" className="p__opensans">Painel de Administrador</Link></li> : null}
       </ul>
       <div className="app__navbar-login">
-        <a href="/login" className="p__opensans">
-          Login / Registrar
-        </a>
+        <Link to="/login" className="p__opensans">
+          Login
+        </Link>
+
         <div />
-        <a href="/pedir" className="p__opensans">
-          Reservar mesa
-        </a>
+        <Link to="/pedir" className="p__opensans">
+          Fazer pedido
+        </Link>
       </div>
 
       <div className="app__navbar-smallscreen">
@@ -52,16 +71,16 @@ const Navbar = () => {
             />
             <ul className="app__navbar-smallscreen_links">
               <li className="p__opensans">
-                <a href="#home">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="p__opensans">
-                <a href="#sobre">Sobre Nós</a>
+                <a href="#about">Sobre Nós</a>
               </li>
               <li className="p__opensans">
                 <a href="#menu">Menu</a>
               </li>
               <li className="p__opensans">
-                <a href="#contatos">Contato</a>
+                <a href="#contact">Contato</a>
               </li>
             </ul>
           </div>
