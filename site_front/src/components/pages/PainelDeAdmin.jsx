@@ -1,6 +1,8 @@
 import React from 'react'
 import ComCriaOpcoes from '../ComCriaOpcoes'
 import ComEditaOpcoes from '../ComEditaOpcoes'
+import { BrowserRouter, useNavigate, Routes, Route, Navigate } from 'react-router-dom';
+
 
 export function PainelDeAdmin(){
     
@@ -13,11 +15,16 @@ export function PainelDeAdmin(){
         }
       }
 
+      const verificaUsuarioAdmin = () =>{
+        if (!verificaUsuario()) return false;
+        if(JSON.parse(sessionStorage.getItem("currentUser")).isAdmin) return true;
+        return false;
+      }
 
     return(
         <div>
-            {verificaUsuario() ? <ComCriaOpcoes></ComCriaOpcoes> : null}
-            {verificaUsuario() ? <ComEditaOpcoes></ComEditaOpcoes> : null}
+            {verificaUsuarioAdmin() ? <ComCriaOpcoes></ComCriaOpcoes> : <Navigate to="/"></Navigate>}
+            {verificaUsuarioAdmin() ? <ComEditaOpcoes></ComEditaOpcoes> : <Navigate to="/"></Navigate>}
 
         </div>
     )
